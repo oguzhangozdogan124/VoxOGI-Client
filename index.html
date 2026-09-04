@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src http: https: ws: wss:; img-src 'self' data:; media-src 'self' blob:; script-src 'self'; style-src 'self'" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VoxOGI</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./node_modules/socket.io-client/dist/socket.io.min.js"></script>
+    <script defer src="./renderer.js"></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand"><img src="./chat_logo.png" alt="" /><h1>VoxOGI</h1></div>
+      <button id="settings-button" class="icon-button" type="button" aria-label="Open settings" title="Settings">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58-1.92-3.32-2.39.96a7.3 7.3 0 0 0-1.63-.94L14.87 3h-3.74l-.36 3.18c-.58.24-1.12.55-1.63.94l-2.39-.96-1.92 3.32 2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58 1.92 3.32 2.39-.96c.51.39 1.05.7 1.63.94l.36 3.18h3.74l.36-3.18c.58-.24 1.12-.55 1.63-.94l2.39.96 1.92-3.32-2.03-1.58ZM13 15.5A3.5 3.5 0 1 1 13 8a3.5 3.5 0 0 1 0 7.5Z" /></svg>
+      </button>
+    </header>
+
+    <div id="layout">
+      <main id="chat-panel">
+        <p class="status-line">Status: <span id="connection-label" data-state="connecting">Connecting</span></p>
+        <p id="identity-label" class="status-line secondary-status">Connecting to chat…</p>
+
+        <div id="messages" role="log" aria-live="polite"></div>
+        <form id="message-form" class="message-form">
+          <label class="sr-only" for="message-input">Message</label>
+          <input id="message-input" type="text" maxlength="1000" autocomplete="off" placeholder="Type a message…" disabled />
+          <button id="send-button" type="submit" disabled>Send</button>
+        </form>
+      </main>
+
+      <aside id="users-panel" aria-labelledby="users-heading">
+        <div class="users-heading-row"><h2 id="users-heading">Users</h2><span id="user-count">0</span></div>
+        <p class="users-help">Click a user or voice group to start, join, or expand a call.</p>
+        <div id="users-empty" class="users-empty">Connecting to chat…</div>
+        <ul id="users-list"></ul>
+      </aside>
+    </div>
+
+    <div id="toast-region" class="toast-region" aria-live="polite"></div>
+    <div id="remote-audio-container" hidden></div>
+
+    <dialog id="settings-dialog" class="settings-dialog">
+      <form id="settings-form" method="dialog">
+        <div class="dialog-heading"><h2>Settings</h2><button id="settings-close" class="dialog-close" type="button" aria-label="Close settings">×</button></div>
+        <div class="settings-fields">
+          <label><span>Server URL</span><input id="server-url-input" type="url" required spellcheck="false" /></label>
+          <label><span>Server token <em>(optional)</em></span><input id="token-input" type="password" autocomplete="off" /></label>
+          <label><span>Nickname</span><input id="nickname-input" type="text" maxlength="60" required autocomplete="nickname" /></label>
+          <label><span>Microphone</span><select id="microphone-select"></select></label>
+          <button id="microphone-test-button" class="test-button" type="button">Test Microphone</button>
+          <div class="meter-row"><div class="meter-track"><div id="microphone-meter" class="meter-fill"></div></div><output id="microphone-level">0%</output></div>
+          <label><span>Speaker</span><select id="speaker-select"></select></label>
+          <button id="speaker-test-button" class="test-button" type="button">Test Speaker</button>
+        </div>
+        <p id="settings-error" class="form-error" role="alert" hidden></p>
+        <div class="dialog-actions"><button id="settings-cancel" class="cancel-button" type="button">Cancel</button><button class="save-button" type="submit">Save</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="screen-picker-dialog" class="screen-picker-dialog">
+      <div class="screen-picker-content">
+        <div class="dialog-heading"><h2>Share your screen</h2><button id="screen-picker-close" class="dialog-close" type="button" aria-label="Close screen picker">×</button></div>
+        <p>Select a screen or application window. Only video will be shared.</p>
+        <div id="screen-source-list" class="screen-source-list"></div>
+        <div class="dialog-actions"><button id="screen-picker-cancel" class="cancel-button" type="button">Cancel</button></div>
+      </div>
+    </dialog>
+  </body>
+</html>

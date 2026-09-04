@@ -1,0 +1,54 @@
+{
+  "name": "voxogi-client",
+  "version": "2.2.5",
+  "description": "A clean Electron voice-chat client for the VoxOGI server",
+  "main": "main.js",
+  "author": "Oğuzhan Gözdoğan",
+  "license": "ISC",
+  "scripts": {
+    "start": "electron .",
+    "check": "node --check main.js && node --check preload.js && node --check renderer.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --win"
+  },
+  "dependencies": {
+    "socket.io-client": "^4.8.1"
+  },
+  "devDependencies": {
+    "electron": "^37.2.3",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.voxogi.client",
+    "productName": "VoxOGI",
+    "artifactName": "VoxOGI-Setup-${version}.${ext}",
+    "asar": true,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "index.html",
+      "styles.css",
+      "renderer.js",
+      "main.js",
+      "preload.js",
+      "chat_logo.png",
+      "package.json",
+      "node_modules/socket.io-client/**/*",
+      "node_modules/engine.io-client/**/*",
+      "node_modules/socket.io-parser/**/*",
+      "node_modules/@socket.io/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "chat_logo.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "VoxOGI"
+    }
+  }
+}
