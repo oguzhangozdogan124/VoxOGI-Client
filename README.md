@@ -60,7 +60,7 @@ failed peer connection.
 ## Connection
 
 ```text
-Server:    http://194.146.47.44:56964/vc
+Server:    http://""/vc
 Namespace: /vc
 Path:      /s.io
 ```
