@@ -6,8 +6,11 @@ const { app, BrowserWindow, desktopCapturer, ipcMain, session } = require("elect
 const PARTITION = "persist:voxogi-client-v2";
 let selectedDesktopSourceId = null;
 
+<<<<<<< HEAD
 app.commandLine.appendSwitch("autoplay-policy", "no-user-gesture-required");
 
+=======
+>>>>>>> origin/main
 function createWindow() {
   const window = new BrowserWindow({
     width: 1280,
@@ -25,7 +28,10 @@ function createWindow() {
       contextIsolation: true,
       nodeIntegration: false,
       sandbox: true,
+<<<<<<< HEAD
       backgroundThrottling: false,
+=======
+>>>>>>> origin/main
     },
   });
 
@@ -65,11 +71,19 @@ app.whenReady().then(() => {
   });
 
   clientSession.setPermissionCheckHandler((_webContents, permission) =>
+<<<<<<< HEAD
     permission === "media" || permission === "fullscreen" || permission === "speaker-selection",
   );
   clientSession.setPermissionRequestHandler(
     (_webContents, permission, callback) =>
       callback(permission === "media" || permission === "fullscreen" || permission === "speaker-selection"),
+=======
+    permission === "media" || permission === "fullscreen",
+  );
+  clientSession.setPermissionRequestHandler(
+    (_webContents, permission, callback) =>
+      callback(permission === "media" || permission === "fullscreen"),
+>>>>>>> origin/main
   );
 
   createWindow();

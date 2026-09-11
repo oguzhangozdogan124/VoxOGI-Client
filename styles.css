@@ -51,14 +51,23 @@ button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px s
 .user-action { color: #d6d2df; font-size: clamp(.78rem, 1.4cqw, 1rem); font-weight: 700; }
 .voice-group-item { min-width: 0; grid-column: span var(--group-size, 2); }
 .voice-group-card { display: grid; width: 100%; height: 100%; min-width: 0; grid-template-rows: auto minmax(0, 1fr) auto; gap: 10px; padding: 11px; border: 1px solid rgb(29 168 143 / 55%); border-radius: 9px; background: rgb(29 168 143 / 10%); }
+<<<<<<< HEAD
 .voice-group-card.is-screen-sharing { grid-template-areas: "header header" "stage members" "footer footer"; grid-template-columns: minmax(0, 1fr) clamp(140px, 13vw, 190px); grid-template-rows: auto minmax(0, 1fr) auto; gap: 6px; padding: 8px; background: #11101d; }
+=======
+.voice-group-card.is-screen-sharing { grid-template-rows: auto minmax(0, 1fr) auto auto; background: #11101d; }
+>>>>>>> origin/main
 .voice-group-header, .voice-group-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .voice-group-header strong { color: #69e4cd; font-size: .78rem; }
 .voice-group-header span { color: var(--muted); font-size: .66rem; }
 .voice-group-members { display: grid; min-height: 0; grid-template-columns: repeat(auto-fit, minmax(105px, 1fr)); gap: 8px; }
+<<<<<<< HEAD
 .voice-member { position: relative; display: flex; min-width: 0; min-height: 76px; height: 100%; container-type: inline-size; flex-direction: column; align-items: center; justify-content: center; gap: 5px; padding: 8px; border: 1px solid color-mix(in srgb, var(--user-color) 68%, transparent); border-radius: 7px; background: color-mix(in srgb, var(--user-color) 24%, var(--panel)); color: #fff; transition: border-color 120ms ease, box-shadow 120ms ease, background 120ms ease; }
 .voice-member:hover:not(:disabled) { border-color: var(--user-color); background: color-mix(in srgb, var(--user-color) 35%, var(--panel)); }
 .voice-member.is-speaking { border-color: #4ff2b6; background: color-mix(in srgb, var(--user-color) 31%, var(--panel)); box-shadow: 0 0 0 2px rgb(79 242 182 / 38%), 0 0 22px rgb(79 242 182 / 18%); }
+=======
+.voice-member { display: flex; min-width: 0; min-height: 76px; height: 100%; container-type: inline-size; flex-direction: column; align-items: center; justify-content: center; gap: 5px; padding: 8px; border: 1px solid color-mix(in srgb, var(--user-color) 68%, transparent); border-radius: 7px; background: color-mix(in srgb, var(--user-color) 24%, var(--panel)); color: #fff; }
+.voice-member:hover:not(:disabled) { border-color: var(--user-color); background: color-mix(in srgb, var(--user-color) 35%, var(--panel)); }
+>>>>>>> origin/main
 .voice-member .user-name { font-size: clamp(1.3rem, 4cqw, 2.4rem); }
 .voice-member .user-action { font-size: clamp(.75rem, 1.4cqw, .95rem); }
 .voice-group-footer { justify-content: flex-end; padding-top: 1px; }
@@ -75,6 +84,7 @@ button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px s
 .voice-group-mute.is-muted::after { position: absolute; width: 24px; height: 2px; border-radius: 2px; background: currentColor; content: ""; transform: rotate(-45deg); }
 .voice-group-leave { background: var(--danger); }
 .voice-group-leave:hover { background: #e04e59; }
+<<<<<<< HEAD
 .member-indicators { position: absolute; top: 8px; right: 8px; display: flex; gap: 5px; }
 .speaking-indicator, .muted-indicator { display: grid; width: 27px; height: 27px; place-items: center; border-radius: 50%; box-shadow: 0 3px 10px rgb(0 0 0 / 28%); }
 .speaking-indicator { background: #24b986; color: #fff; }
@@ -103,6 +113,21 @@ button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px s
 .voice-group-card:fullscreen .screen-share-stage { border: 0; }
 .voice-group-card:fullscreen.is-screen-sharing { grid-template-columns: minmax(0, 1fr) clamp(145px, 11vw, 180px); }
 .voice-group-card:fullscreen .voice-group-members { max-height: none; }
+=======
+.screen-share-stage { position: relative; display: grid; min-width: 0; min-height: 180px; overflow: hidden; place-items: center; border: 1px solid #34314d; border-radius: 8px; background: #050509; }
+.screen-share-video { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+.screen-share-owner { position: absolute; top: 10px; left: 10px; padding: 5px 9px; border-radius: 6px; background: rgb(0 0 0 / 68%); color: #fff; font-size: .72rem; font-weight: 750; }
+.screen-fullscreen-button { position: absolute; top: 10px; right: 10px; display: grid; width: 38px; height: 36px; padding: 0; place-items: center; border-radius: 6px; background: rgb(15 13 27 / 82%); }
+.screen-fullscreen-button:hover { background: var(--primary); }
+.screen-fullscreen-button svg { width: 21px; fill: currentColor; }
+.is-screen-sharing .voice-group-members { grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); max-height: 92px; }
+.is-screen-sharing .voice-member { min-height: 64px; padding: 6px; }
+.is-screen-sharing .voice-member .user-name { font-size: clamp(.9rem, 2.2cqw, 1.35rem); }
+.is-screen-sharing .voice-member .user-action { font-size: clamp(.62rem, 1.1cqw, .78rem); }
+.voice-group-card:fullscreen { width: 100vw; height: 100vh; padding: 16px; border: 0; border-radius: 0; background: #08070d; grid-template-rows: auto minmax(0, 1fr) auto auto; }
+.voice-group-card:fullscreen .screen-share-stage { border: 0; }
+.voice-group-card:fullscreen .voice-group-members { max-height: 100px; }
+>>>>>>> origin/main
 .voice-group-card:fullscreen .voice-group-footer { padding-bottom: 4px; }
 .toast-region { position: fixed; right: 18px; bottom: 18px; z-index: 20; display: grid; gap: 8px; width: min(340px, calc(100vw - 36px)); }
 .toast { padding: 11px 13px; border: 1px solid var(--border); border-radius: 8px; background: #302d4b; box-shadow: 0 15px 45px rgb(0 0 0 / 35%); font-size: .78rem; }

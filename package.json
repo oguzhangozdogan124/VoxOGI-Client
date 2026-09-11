@@ -1,6 +1,10 @@
 {
   "name": "voxogi-client",
+<<<<<<< HEAD
   "version": "2.3.4",
+=======
+  "version": "2.2.5",
+>>>>>>> origin/main
   "description": "A clean Electron voice-chat client for the VoxOGI server",
   "main": "main.js",
   "author": "Oğuzhan Gözdoğan",
